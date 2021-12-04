@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {% for todo in todos %}
+        <div class='todo-container'>
+            <article class="media content-section">
+                 <div class="media-body">
+                     <h6>Title:</h6>
+                   <h2><a class="todo-title" href="{{ url_for('get_todo', id=todo.id) }}">{{ todo.title }}</a></h2>
+                     <h6>Description:</h6>
+                   <h4 class="todo-content">{{ todo.description }}</h4>
+                     <hr>
+                   {% if todo.is_done%}
+
+<!--                   <h2><a class="todo-title" href="{{ url_for('done_todo', id=todo.id) }}">Status: Done</a></h2>-->
+                   <h2><a class="btn btn-outline-success w-100" href="{{ url_for('done_todo', id=todo.id) }}">Status: Done</a></h2>
+<!--                   <h2><a class="todo-title" href="{{ url_for('edit_todo', id=todo.id) }}">Edit</a></h2>-->
+                     <h2><a class="btn btn-outline-primary w-100" href="{{ url_for('edit_todo', id=todo.id) }}">Edit</a></h2>
+<!--                   <h2><a class="todo-title" href="{{ url_for('delete_todo', id=todo.id) }}">Delete</a></h2>                   <h2><a class="todo-title" href="{{ url_for('done_todo', id=todo.id) }}">Status: Done</a></h2>-->
+                   <h2><a class="btn btn-outline-danger w-100" href="{{ url_for('delete_todo', id=todo.id) }}">Delete</a></h2>
+                   <h3>ID: {{ todo.id}}</h3>
+<!--                   <h3>Status: {{ todo.is_done}}</h3>-->
+
+                   {% else %}
+<!--                   <h2><a class="todo-title" href="{{ url_for('done_todo', id=todo.id) }}">Status: Still</a></h2>-->
+                   <h2><a class="btn btn-outline-info w-100" href="{{ url_for('done_todo', id=todo.id) }}">Status: Still</a></h2>
+<!--                   <h2><a class="todo-title" href="{{ url_for('edit_todo', id=todo.id) }}">Edit</a></h2>-->
+                   <h2><a class="btn btn-outline-primary w-100" href="{{ url_for('edit_todo', id=todo.id) }}">Edit</a></h2>
+<!--                   <h2><a class="todo-title" href="{{ url_for('delete_todo', id=todo.id) }}">Delete</a></h2>-->
+                   <h2><a class="btn btn-outline-danger w-100" href="{{ url_for('delete_todo', id=todo.id) }}">Delete</a></h2>
+                   <h3>ID: {{ todo.id}}</h3>
+<!--                   <h3>Status: {{ todo.is_done}}</h3>-->
+
+                    
+
+                   {% endif %}
+                   <div class="todo-metadata d-flex justify-content-between">
+                       <small class="text-muted">Created At: {{ todo.created_at }}</small>
+                    </div>
+                
+
+                 </div>
+               </article>
+        </div>
+    {% endfor %}
+
+{% endblock %}
